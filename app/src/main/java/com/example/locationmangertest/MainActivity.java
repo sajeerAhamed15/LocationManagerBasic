@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -31,16 +32,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            Log.e("tag","no permission");
+
             return;
         }
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
+        Log.e("tag","init");
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        Toast.makeText(this, "Lat: "+location.getLatitude()+" Lang: "+location.getLatitude(), Toast.LENGTH_SHORT).show();
+        Log.e("tag","changed");
+        Toast.makeText(this, "Lat: "+location.getLatitude()+" Lang: "+location.getLongitude(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
